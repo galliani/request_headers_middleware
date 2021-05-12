@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'byebug'
 require 'request_store'
 
 module RequestHeadersMiddleware # :nodoc:
@@ -33,7 +34,7 @@ module RequestHeadersMiddleware # :nodoc:
     end
 
     def select_headers(env)
-      env.select { |k, _v| k.start_with? 'HTTP_' }
+      env.select { |k, _v| k.to_s.start_with? 'HTTP_' }
     end
 
     def sanitize_headers(headers)
